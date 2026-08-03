@@ -5,3 +5,4 @@ ploty
 matplotlib
 seborn
 scipy
+scikit-learn
