@@ -3,9 +3,8 @@ import streamlit as st
 from io import BytesIO
 
 
-# -----------------------------
-# LOAD DATASET
-# -----------------------------
+
+# LOAD DAtASET
 def load_data(uploaded_file):
     """
     Load CSV or Excel file
@@ -35,9 +34,8 @@ def load_data(uploaded_file):
         return None
 
 
-# -----------------------------
+
 # FILE DETAILS
-# -----------------------------
 def get_file_details(uploaded_file):
 
     details = {
@@ -49,9 +47,8 @@ def get_file_details(uploaded_file):
     return details
 
 
-# -----------------------------
+
 # MEMORY USAGE
-# -----------------------------
 def memory_usage(df):
 
     memory = df.memory_usage(deep=True).sum()
@@ -59,17 +56,15 @@ def memory_usage(df):
     return round(memory / (1024 * 1024), 2)
 
 
-# -----------------------------
+
 # DOWNLOAD CSV
-# -----------------------------
 def convert_csv(df):
 
     return df.to_csv(index=False).encode("utf-8")
 
 
-# -----------------------------
+
 # DOWNLOAD EXCEL
-# -----------------------------
 def convert_excel(df):
 
     output = BytesIO()
@@ -81,9 +76,8 @@ def convert_excel(df):
     return output.getvalue()
 
 
-# -----------------------------
+
 # DATA TYPES
-# -----------------------------
 def get_column_types(df):
 
     numerical = df.select_dtypes(include=["number"]).columns.tolist()
@@ -99,9 +93,8 @@ def get_column_types(df):
     return numerical, categorical, datetime_cols
 
 
-# -----------------------------
+
 # MISSING VALUES
-# -----------------------------
 def missing_summary(df):
 
     missing = df.isnull().sum()
@@ -121,17 +114,13 @@ def missing_summary(df):
     )
 
 
-# -----------------------------
+
 # DUPLICATE ROWS
-# -----------------------------
 def duplicate_count(df):
 
     return int(df.duplicated().sum())
 
-
-# -----------------------------
 # DATASET INFO
-# -----------------------------
 def dataset_info(df):
 
     info = {
@@ -147,10 +136,7 @@ def dataset_info(df):
 
     return info
 
-
-# -----------------------------
 # COLUMN SUMMARY
-# -----------------------------
 def column_summary(df):
 
     summary = pd.DataFrame({
@@ -163,10 +149,7 @@ def column_summary(df):
 
     return summary
 
-
-# -----------------------------
 # DISPLAY DATASET INFO
-# -----------------------------
 def show_dataset_metrics(df):
 
     info = dataset_info(df)
@@ -184,17 +167,14 @@ def show_dataset_metrics(df):
     c6.metric("Total Cells", info["Total Cells"])
 
 
-# -----------------------------
+
 # RESET INDEX
-# -----------------------------
 def reset_dataframe(df):
 
     return df.reset_index(drop=True)
 
 
-# -----------------------------
 # CHECK EMPTY DATASET
-# -----------------------------
 def is_empty(df):
 
     if df is None:
